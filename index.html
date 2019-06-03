@@ -1,0 +1,311 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>reveal.js</title>
+
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/white.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/monokai.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section data-background-image="images/bbox.png">Interpreting Black-Box Semantic Segmentation Models in Remote Sensing Applications
+					<p><small>Adrianna Janik, Kris Sankaran, Anthony Ortiz<br>
+					<a href="mailto:ada.janik@gmail.com">ada.janik@gmail.com</a><br>
+					<i>Montreal Institute for Learning Algorithms</i></small></p>
+				</section>
+				<section><h4 align="left">Agenda:</h4>
+<small>
+					<ul>
+						<li>Interpretability</li>
+						<li>Remote Sensing</li>
+						<li>Building Detection</li>
+						<li>Use Case: Niger State</li>
+						<li>Deep Model: U-Net</li>
+						<li>Interface</li>
+						<li>Demo</li>
+						<li>Method</li>
+						<li>Clustering</li>
+						<li>Conclusion</li>
+					</ul>
+</small>
+				</section>
+
+				<section><h4  style="color:#ffffff;">Interpretability</h4>
+					<section data-background-image="images/blackboxes.png">
+					<br>	<small style="color:#ffffff;background:#0f0f0f">according to Ribeiro et al. (2016):</small>
+					  <blockquote style="color:#ffffff;background:#030303;">
+						      If the users do not trust a model or a prediction, they will not use it</blockquote>
+				</section>
+				</section>
+
+				<section>Remote Sensing
+					<section><h3>Wildelife Detection</h3>	
+						<img alt="Animals Detection" src="images/wildelife_detection.jpg" data-lazy-loaded=""  width="600">
+					</section>
+					<section><h3>Vehicles Detection</h3>
+						<img alt="Vehicles Detection" src="images/car_detection.jpg" data-lazy-loaded=""  width="600">
+					</section>			
+					<section><h3>Plane Detection</h3>
+						<img alt="Planes Detection" src="images/plane_detection.png" data-lazy-loaded=""  width="600">					
+					</section>
+					<section><h3>Boats Detection</h3>
+						<img alt="Boats Detection" src="images/boats_detection.png" data-lazy-loaded=""  width="600">
+					</section>
+					<section><h3>Road Detection</h3>
+						<img alt="Road Detection" src="images/road_detection.jpeg" data-lazy-loaded=""  width="600">
+					</section>
+					<section><h3>Land Coverage</h3>
+						<img alt="Land Coverage" src="images/land_coverage.jpg" data-lazy-loaded=""  width="400">
+					</section>
+				</section>
+
+				<section>
+				<section><h3>Building Detection</h3>
+					<img alt="Buildings" src="images/building.png" data-lazy-loaded=""  width="400">
+				</section>
+				<section>
+					<h5>GOAL: Population Estimation</h5>
+					<ul>
+						<li>epidemiological analysis</li>
+						<li>disease surveillance</li>
+						<li>logistical planning</li>
+					</ul><br><br>
+					Dataset: Inria Aerial Image Labeling, sattelite images of cities from Europe and America
+		 	 	</section>
+		 	 	</section>
+
+				<section><h3>Niger State</h3>
+						<img alt="Buildings" src="images/huts.png" data-lazy-loaded=""  width="380">
+						<img alt="Buildings" src="images/house.png" data-lazy-loaded=""  width="380">
+						<img alt="Buildings" src="images/bird_view_huts.png" data-lazy-loaded=""  width="380">
+						<img alt="Buildings" src="images/bird_view_houses.png" data-lazy-loaded=""  width="380">
+				</section>
+				<section>How can we explain predicted segmentations by inspecting their learned representations and navigating the associated latent space?</section>
+				<section><h3>U-Net</h3>
+					<section>
+						<img alt="U-Net" src="images/u-net-architecture.png" data-lazy-loaded=""  width="800">
+					</section>
+					<section>
+						<img alt="U-Net" src="images/unet_explained.png" data-lazy-loaded=""  width="800">
+					</section>
+
+					<section><br><h5>Convolutions</h5>
+					
+						<img alt="Convolutions" src="images/conv_basic.gif" data-lazy-loaded=""  width="300">
+						<img alt="Convolutions" src="images/conv_basic_numbers.gif" data-lazy-loaded=""  width="300">
+						<h5>Max Pooling</h5>
+						<img alt="Max Pooling" src="images/maxpooling.png" data-lazy-loaded=""  width="500">
+				</section>
+				</section>
+				<section><h3>Interface</h3>
+					<section>
+						<img alt="Interface" src="images/interface.png" data-lazy-loaded=""  width="1000">
+					</section>
+				</section>
+				<section><section><h3>Method</h3>
+					
+						<img alt="Method" src="images/method.png" data-lazy-loaded=""  width="780">
+					</section>
+					<section><h3>Inference</h3>
+					
+						<img alt="Method" src="images/net.png" data-lazy-loaded=""  width="800">
+					</section>
+
+					<section data-transition="{Fade}">
+						<h3>IoU Smoothing</h3>
+						<img alt="Method" src="images/iou_smoothing.png" data-lazy-loaded=""  width="800">
+					</section>
+					<section data-transition="{Fade}"><h3>Scatter Plot</h3>
+						<img alt="Method" src="images/pca_position.png" data-lazy-loaded=""  width="800">
+					</section>
+					<section data-transition="{Fade}"><h3>Combined View</h3>
+						<img alt="Method" src="images/net_second.png" data-lazy-loaded=""  width="800">
+					</section>
+
+				</section>
+				<section><h3>Clustering</h3>
+					<section>
+						<img alt="PCA" src="images/pca.png" data-lazy-loaded=""  width="700">
+					</section>
+				
+				
+					<section>
+						<img alt="Clusters" src="images/cluster.png" data-lazy-loaded=""  width="400">
+					</section>
+					<section>
+						<h5>Is it a desired generalization?</h5>
+						<img alt="Cars" src="images/cars.png" data-lazy-loaded=""  width="400">
+						<img alt="Graves" src="images/graves.png" data-lazy-loaded=""  width="400">
+					</section>
+				</section>
+                                <section data-background-iframe="https://adrijanik.github.io/unet-vis/" data-background-interactive>	
+				</section>
+				<section>
+					<h4>Conclusion</h4><br><br>
+	
+					<section>
+						<h5>Error I: Ground truth error - time mismatch.</h5> <small>Model predicted correctly absence of buildings.</small><br>
+						<img alt="Clusters" src="images/img_6560_kitsap4.png" data-lazy-loaded=""  width="300">
+						<img alt="Clusters" src="images/mask_6560_kitsap4.png" data-lazy-loaded=""  width="300">
+						<img alt="Clusters" src="images/pred_6560_kitsap4.png" data-lazy-loaded=""  width="300">
+					</section>
+					<section>
+						<h5>Error II: Non-building annotated as building.</h5> <small>Barges were annotated as buildings.</small><br>
+						<img alt="Clusters" src="images/img_1345_vienna5.png" data-lazy-loaded=""  width="300">
+						<img alt="Clusters" src="images/mask_1345_vienna5.png" data-lazy-loaded=""  width="300">
+						<img alt="Clusters" src="images/pred_1345_vienna5.png" data-lazy-loaded=""  width="300">
+					</section>
+					<section>
+						<h5>Error III: Not detecting building.</h5> <small>Building with antenas on top is not detected.</small><br>
+						<img alt="Clusters" src="images/img_7193_chicago16.png" data-lazy-loaded=""  width="300">
+						<img alt="Clusters" src="images/mask_7193_chicago16.png" data-lazy-loaded=""  width="300">
+						<img alt="Clusters" src="images/pred_7193_chicago16.png" data-lazy-loaded=""  width="300">
+					</section>
+				
+			
+
+					<section> <br>Example Use Case <br>
+					<img alt="Clusters" align="top" src="images/mapswipe_logo.png" data-lazy-loaded=""  width="300">
+					<img alt="Clusters" src="images/mapswipe_user.JPG" data-lazy-loaded=""  width="300">
+					<img alt="Clusters" src="images/mapswipe.PNG" data-lazy-loaded=""  width="600">
+
+					</section>
+				
+				</section>
+				<section>
+			<h5 id="bibliography" class="unnumbered">References</h5>
+			<small><div id="refs" class="references">
+<div id="ref-doshi-velez_towards_2017">
+<p>Doshi-Velez, Finale, and Been Kim. 2017. “Towards a Rigorous Science of Interpretable Machine Learning.” <em>arXiv:1702.08608 [Cs, Stat]</em>, February. <a href="http://arxiv.org/abs/1702.08608" class="uri">http://arxiv.org/abs/1702.08608</a>.</p>
+</div>
+<div id="ref-dunteman_principal_2019">
+<p>Dunteman, George. 2019. <em>Principal Components Analysis</em>. Newbury Park, California. doi:<a href="https://doi.org/10.4135/9781412985475">10.4135/9781412985475</a>.</p>
+</div>
+<div id="ref-right_to_explanation_2016arXiv160608813G">
+<p>Goodman, Bryce, and Seth Flaxman. 2016. “European Union regulations on algorithmic decision-making and a ”right to explanation”.” <em>arXiv E-Prints</em>, June, arXiv:1606.08813.</p>
+</div>
+<div id="ref-guidotti_survey_2018">
+<p>Guidotti, Riccardo, Anna Monreale, Salvatore Ruggieri, Franco Turini, Dino Pedreschi, and Fosca Giannotti. 2018. “A Survey of Methods for Explaining Black Box Models.” <em>arXiv:1802.01933 [Cs]</em>, February. <a href="http://arxiv.org/abs/1802.01933" class="uri">http://arxiv.org/abs/1802.01933</a>.</p>
+</div>
+<div id="ref-hohman_visual_2018">
+<p>Hohman, Fred, Minsuk Kahng, Robert Pienta, and Duen Horng Chau. 2018. “Visual Analytics in Deep Learning: An Interrogative Survey for the Next Frontiers.” <em>arXiv:1801.06889 [Cs, Stat]</em>, January. <a href="http://arxiv.org/abs/1801.06889" class="uri">http://arxiv.org/abs/1801.06889</a>.</p>
+</div>
+<div id="ref-hunt_crowdsourced_2019">
+<p>Hunt, Amelia, and Doug Specht. 2019. “Crowdsourced Mapping in Crisis Zones: Collaboration, Organisation and Impact.” <em>Journal of International Humanitarian Action</em> 4 (1). doi:<a href="https://doi.org/10.1186/s41018-018-0048-1">10.1186/s41018-018-0048-1</a>.</p>
+</div>
+<div id="ref-keim_vis">
+<p>Keim, D. A. 2002. “Information Visualization and Visual Data Mining.” <em>IEEE Transactions on Visualization and Computer Graphics</em> 8 (1): 1–8. doi:<a href="https://doi.org/10.1109/2945.981847">10.1109/2945.981847</a>.</p>
+</div>
+<div id="ref-kim_interpretability_2017">
+<p>Kim, Been, Martin Wattenberg, Justin Gilmer, Carrie Cai, James Wexler, Fernanda Viegas, and Rory Sayres. 2017. “Interpretability Beyond Feature Attribution: Quantitative Testing with Concept Activation Vectors (TCAV).” <em>arXiv:1711.11279 [Stat]</em>, November. <a href="http://arxiv.org/abs/1711.11279" class="uri">http://arxiv.org/abs/1711.11279</a>.</p>
+</div>
+<div id="ref-kingma_adam:_2014">
+<p>Kingma, Diederik P., and Jimmy Ba. 2014. “Adam: A Method for Stochastic Optimization.” <em>arXiv:1412.6980 [Cs]</em>, December. <a href="http://arxiv.org/abs/1412.6980" class="uri">http://arxiv.org/abs/1412.6980</a>.</p>
+</div>
+<div id="ref-maggiori_can_2017">
+<p>Maggiori, Emmanuel, Yuliya Tarabalka, Guillaume Charpiat, and Pierre Alliez. 2017. “Can Semantic Labeling Methods Generalize to Any City? The Inria Aerial Image Labeling Benchmark.” In <em>2017 IEEE International Geoscience and Remote Sensing Symposium (IGARSS)</em>, 3226–9. Fort Worth, TX: IEEE. doi:<a href="https://doi.org/10.1109/IGARSS.2017.8127684">10.1109/IGARSS.2017.8127684</a>.</p>
+</div>
+<div id="ref-ribeiro_why_2016">
+<p>Ribeiro, Marco Tulio, Sameer Singh, and Carlos Guestrin. 2016. “‘Why Should I Trust You?’: Explaining the Predictions of Any Classifier.” <em>arXiv:1602.04938 [Cs, Stat]</em>, February. <a href="http://arxiv.org/abs/1602.04938" class="uri">http://arxiv.org/abs/1602.04938</a>.</p>
+</div>
+<div id="ref-ronneberger_u-net:_2015">
+<p>Ronneberger, Olaf, Philipp Fischer, and Thomas Brox. 2015. “U-Net: Convolutional Networks for Biomedical Image Segmentation.” <em>arXiv:1505.04597 [Cs]</em>, May. <a href="http://arxiv.org/abs/1505.04597" class="uri">http://arxiv.org/abs/1505.04597</a>.</p>
+</div>
+<div id="ref-rumelhart1985learning">
+<p>Rumelhart, David E, Geoffrey E Hinton, and Ronald J Williams. 1985. “Learning Internal Representations by Error Propagation.” California Univ San Diego La Jolla Inst for Cognitive Science.</p>
+</div>
+<div id="ref-spence_information_2007">
+<p>Spence, Robert. 2007. <em>Information Visualization: Design for Interaction</em>. 2 edition. Harlow: Pearson.</p>
+</div>
+<div id="ref-tomsett_interpretable_2018">
+<p>Tomsett, Richard, Dave Braines, Dan Harborne, Alun Preece, and Supriyo Chakraborty. 2018. “Interpretable to Whom? A Role-Based Model for Analyzing Interpretable Machine Learning Systems.” <em>arXiv:1806.07552 [Cs]</em>, June. <a href="http://arxiv.org/abs/1806.07552" class="uri">http://arxiv.org/abs/1806.07552</a>.</p>
+</div>
+<div id="ref-wu_prototypal_2017">
+<p>Wu, Chenyue, and Esteban G. Tabak. 2017. “Prototypal Analysis and Prototypal Regression.” <em>arXiv:1701.08916 [Stat]</em>, January. <a href="http://arxiv.org/abs/1701.08916" class="uri">http://arxiv.org/abs/1701.08916</a>.</p>
+</div>
+<div id="ref-yosinski_understanding_2015">
+<p>Yosinski, Jason, Jeff Clune, Anh Nguyen, Thomas Fuchs, and Hod Lipson. 2015. “Understanding Neural Networks Through Deep Visualization.” <em>arXiv:1506.06579 [Cs]</em>, June. <a href="http://arxiv.org/abs/1506.06579" class="uri">http://arxiv.org/abs/1506.06579</a>.</p>
+</div>
+<div id="ref-yu_visualizing_2014">
+<p>Yu, Wei, Kuiyuan Yang, Yalong Bai, Hongxun Yao, and Yong Rui. 2014. “Visualizing and Comparing Convolutional Neural Networks.” <em>arXiv:1412.6631 [Cs]</em>, December. <a href="http://arxiv.org/abs/1412.6631" class="uri">http://arxiv.org/abs/1412.6631</a>.</p>
+</div>
+</div>
+			</small>	
+				
+				</section>
+				<section>
+<h5>Images</h5>
+<small>
+<br>Max Pooling:<a href="https://computersciencewiki.org/index.php/Max-pooling_/_Pooling" class="uri">https://computersciencewiki.org/</a>
+<br>U-Net:<a href="https://towardsdatascience.com/review-u-net-biomedical-image-segmentation-d02bf06ca760" class="uri">https://towardsdatascience.com/</a>
+<br>Wildelife detection:<a href="https://www.nature.com/articles/srep45127" class="uri">https://www.nature.com</a>
+<br>Animals detection:<a href="https://www.gislounge.com/using-remote-sensing-mapping-counting-animals/" class="uri">https://www.gislounge.com/</a>
+<br>Road detection:<a href="https://www.cv-foundation.org/openaccess/content_iccv_2015/papers/Mattyus_Enhancing_Road_Maps_ICCV_2015_paper.pdf" class="uri">https://www.cv-foundation.org/</a>
+<br>Land Coverage:<a href="http://www.igik.edu.pl/upload/Image/teledetekcja/?C=M;O=A" class="uri">http://www.igik.edu.pl</a>
+<br>Car detection:<a href="https://www.dlr.de/eoc/en/desktopdefault.aspx/tabid-5431/9230_read-42467/" class="uri">https://www.dlr.de/</a>
+<br>Boats detection:<a href="http://gbdxstories.digitalglobe.com/boats/" class="uri">http://gbdxstories.digitalglobe.com/</a>
+<br>Plane detection:<a href="https://www.google.com/imgres?imgurl=https%3A%2F%2Fcdn-images-1.medium.com%2Fmax%2F1600%2F1*eu72LO87fPueTbIwic4QAQ.png&imgrefurl=https%3A%2F%2Fmedium.com%2Fthe-downlinq%2Fyou-only-look-twice-multi-scale-object-detection-in-satellite-imagery-with-convolutional-neural-34f72f659588&docid=HMyjMds40BO11M&tbnid=ia_GegEyCDtH3M%3A&vet=10ahUKEwjD8dTtuMriAhUO8xQKHRLQD1MQMwhFKAQwBA..i&w=1432&h=1090&safe=active&client=ubuntu&bih=959&biw=1920&q=car%20detection%20satellite%20image&ved=0ahUKEwjD8dTtuMriAhUO8xQKHRLQD1MQMwhFKAQwBA&iact=mrc&uact=8" class="uri">https://www.google.com/imgres?imgurl=https%3A%2F%2Fcdn-images-1.medium.com</a>
+</small>	
+				</section>
+
+				<section>Thank You!<br><br>
+					<small>Interpreting Black-Box Semantic Segmentation Models <br>in Remote Sensing Applications</small> <br>
+				<img alt="Demo" src="images/unet-vis.png" data-lazy-loaded=""  width="300" align="center">
+
+					<p><small>Adrianna Janik, Kris Sankaran, Anthony Ortiz<br>
+					<a href="mailto:ada.janik@gmail.com">ada.janik@gmail.com</a><br>
+					<i>Montreal Institute for Learning Algorithms</i></small></p>
+
+				</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			</div>
+		</div>
+
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true }
+				]
+			});
+		</script>
+	</body>
+</html>
